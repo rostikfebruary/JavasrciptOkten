@@ -1,11 +1,11 @@
-
+//task1
 //strings
 
 let str1='hello';
 let str2='owu';
 let str3='com';
 let str4='ua';
-console.log(str1, str2, str3, str4);
+console.log(`${str1} ${str2} ${str3} ${str4}`);
 
 //numbers
 
@@ -25,10 +25,16 @@ console.log(b1, b2);
 
 
 
-
+//task2
 let firstName="Rostik";
 let middleName="Romanovich";
 let lastName="Liutyi";
 
 let myFullName=firstName +' ' + middleName +' ' + lastName;
 console.log(myFullName);
+
+//task3
+let a=100;
+let b='100';
+let c=true;
+console.log(typeof a, b, c);
