@@ -16,29 +16,30 @@
 
 // function sRectangle(a, b){
 //     let s = a * b;
-//     console.log(s)
+//     return s;
 // }
 //
-// sRectangle(2,10);
+// console.log(sRectangle(2,10))
 
 
 // - створити функцію яка обчислює та повертає площу кола з радіусом r
 
 // function sircle(r1, r2){
 //     let s = r1 * r2 * Math.PI;
-//     console.log(s);
+//     return s;
 // }
-// sircle(10, 10)
+//
+// console.log(sircle(10, 10));
 
 
 // - створити функцію яка обчислює та повертає площу циліндру висотою h, та радіутом r  2пRH
 
 // function cylinder(r, h){
 // let s = (Math.PI * 2) * r * h;
-//     console.log(s);
+//     return s;
 // }
 //
-// cylinder(3, 4);
+// console.log(cylinder(3, 4));
 
 
 // - створити функцію яка приймає масив та виводить кожен його елемент
@@ -49,9 +50,17 @@
 // }
 //
 // arr(1, 2, 'hello owu', true);
+//
+// function meteor(...items){
+//     console.log(...items);
+// }
+// meteor(1, 12, 45, 77);
+
 
 // function meteor(...items){
-//     console.log(items);
+//     for (const item of items) {
+//         console.log(item);
+//     }
 // }
 // meteor(1, 12, 45, 77);
 
@@ -62,10 +71,8 @@
 // - створити функцію яка створює параграф з текстом. Текст задати через аргумент
 
 // function paragraph(text) {
-//
 //     document.write(`<p>${text}</p>`);
 // }
-//
 // paragraph('Owu the best');
 
 
@@ -174,7 +181,7 @@
 
 
 // - створити функцію swap(arr,index1,index2). Функція міняє місцями заняення у відаовідних індексах
-// Приклад  swap([11,22,33,44],0,1) //=> [22,11,33,44]
+// // Приклад  swap([11,22,33,44],0,1) //=> [22,11,33,44]
 // let mass = [11, 22, 33, 44]
 // function swap(arr, index1, index2){
 //     if(index1 >= 0 && index1 < arr.length || index2 >= 0 && index2 < arr.length){
@@ -189,6 +196,7 @@
 // console.log(mass)
 
 
+
 // - Написати функцію обміну валюти exchange(sumUAH,currencyValues,exchangeCurrency)
 // Приклад exchange(10000,[{currency:'USD',value:40},{currency:'EUR',value:42}],'USD') // => 250
 
@@ -201,3 +209,19 @@
 // }
 // let ff = exchange(10000, ' EUR')
 // console.log(ff)
+
+// - Написати функцію обміну валюти exchange(sumUAH,currencyValues,exchangeCurrency)
+// Приклад exchange(10000,[{currency:'USD',value:40},{currency:'EUR',value:42}],'USD') // => 250
+
+// function moneyExchage(how, type) {
+//     let result;
+//     let resultOfExchange = [{currency: 'USD', value:40}, {currency: 'EUR', value:42}];
+//     for (const resultOfExchangeElement of resultOfExchange){
+//         if (type === resultOfExchangeElement.currency){
+//             result = how / resultOfExchangeElement.value;
+//             console.log(result + resultOfExchangeElement.currency);
+//         }
+//     }
+// }
+// moneyExchage(10000, 'USD')
+// moneyExchage(42000, 'EUR')
