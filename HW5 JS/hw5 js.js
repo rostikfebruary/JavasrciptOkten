@@ -72,11 +72,16 @@
 
 
 //- створити функцію яка повертає найменьше число з масиву
-// let minNum = (items) => {
-//     let nums = Math.min(...items);
-//     return console.log(nums)
+// let minNum = (arr) => {
+//     let min = arr[0];
+//     for (i =0; i < arr.length; i++ ){
+//         if (arr[i] < min){
+//            min = arr[i]
+//         }
+//     }
+//     return min
 // }
-// minNum([-1,2,3,4])
+// console.log(minNum([-11,-2,-3,4]))
 
 
 //- створити функцію sum(arr)яка приймає масив чисел, сумує значення елементів масиву та повертає його. Приклад sum([1,2,10]) //->13
