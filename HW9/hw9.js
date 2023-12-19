@@ -283,6 +283,7 @@ for (const arrElement of coursesArray) {
         divHour.textContent = 'HourDuration: ' + arrElement.hourDuration
 
         let divModules = document.createElement('div')
+        divModules.textContent = 'Modules: '
         let divUl = document.createElement('ul')
 
         arrElement.modules.forEach(module => {
