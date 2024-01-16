@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXYZ5jgPICvdS2vlXtXED-AUqr6reQxPgoA&usqp=CAU');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .li-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #f3d736;
+            width: 28%;
+            margin-left: 35%;
+            margin-top: 2%;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+        }
+
+        .ul-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 35%;
+            border: 3px solid black;
+            width: 420px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+
+        button {
+            width: 90%;
+            height: 30px;
+            margin-left: 4%;
+            margin-top: 4%;
+            background-color: #f0f3ab;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(115, 115, 47, 0.5);
+        }
+
+        button:hover {
+            background-color: #fcca6a;
+            transition: 0.7s;
+        }
+
+        .posts-btn {
+            width: 150px;
+            margin-bottom: 4%;
+
+        }
+
+        .li2-div {
+            width: 80%;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<script>
+    let url = new URL(location.href)
+    let id = url.searchParams.get('id')
+
+    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then(resp => resp.json())
+        .then(information => {
+            let ulDiv = document.createElement('div')
+            ulDiv.classList.add('ul-container')
+            let ul = document.createElement('ul')
+
+            let id = document.createElement('li')
+            let name = document.createElement('li')
+            let username = document.createElement('li')
+            let email = document.createElement('li')
+            let address = document.createElement('li')
+            let street = document.createElement('ol')
+            let suite = document.createElement('ol')
+            let city = document.createElement('ol')
+            let zipcode = document.createElement('ol')
+            let geo = document.createElement('ol')
+            let lat = document.createElement('ol')
+            let lng = document.createElement('ol')
+            let phone = document.createElement('li')
+            let website = document.createElement('li')
+            let company = document.createElement('li')
+            let cName = document.createElement('ol')
+            let catchPhrase = document.createElement('ol')
+            let bs = document.createElement('ol')
+
+
+            id.innerText = `Id: ${information.id}`
+            name.innerText = `Name: ${information.name}`
+            username.innerText = `Username: ${information.username}`
+            email.innerText = `Email: ${information.email}`
+            address.innerText = 'Address: '
+            street.innerText = `Street: ${information.address.street}`
+            suite.innerText = `Suite: ${information.address.suite}`
+            city.innerText = `City: ${information.address.city}`
+            zipcode.innerText = `Zipcode: ${information.address.zipcode}`
+            geo.innerText = `Geo: `
+            lat.innerText = `Lat: ${information.address.geo.lat}`
+            lng.innerText = `Lng: ${information.address.geo.lng}`
+            phone.innerText = `Phone: ${information.phone}`
+            website.innerText = `Website: ${information.website}`
+            company.innerText = 'Company: '
+            cName.innerText = `Name: ${information.company.name}`
+            catchPhrase.innerText = `CatchPhrase: ${information.company.catchPhrase}`
+            bs.innerText = `Bs: ${information.company.bs}`
+
+
+            let url2 = new URL(location.href)
+            let userId2 = url.searchParams.get('id')
+
+            let btn = document.createElement('button')
+            btn.innerText = 'post of current user'
+            btn.onclick = function () {
+                fetch(`https://jsonplaceholder.typicode.com/users/${userId2}/posts`)
+                    .then(resp => resp.json())
+                    .then(postsTitle => {
+                        let liDiv = document.createElement('div')
+                        liDiv.classList.add('li-container')
+                        let ul2 = document.createElement('ul')
+                        for (const post of postsTitle) {
+                            let li2Div = document.createElement('div')
+                            li2Div.classList.add('li2-div')
+                            let li2 = document.createElement('li')
+                            let postsBtn = document.createElement('button')
+                            postsBtn.classList.add('posts-btn')
+                            let a = document.createElement('a')
+
+                            li2.innerText = post.title
+                            postsBtn.innerText = 'More information'
+                            postsBtn.onclick = function () {
+                                a.href = `post-details.html?id=${post.id}`;
+
+                            }
+                            li2Div.appendChild(li2)
+                            a.append(postsBtn)
+                            ul2.append(li2Div, a)
+
+                        }
+                        liDiv.append(ul2)
+                        document.body.append(liDiv)
+                    })
+            }
+            btn.addEventListener('click', function () {
+                this.disabled = true;
+            });
+
+            address.append(street, suite, city, zipcode, geo)
+            geo.append(lat, lng)
+            company.append(cName, catchPhrase, bs)
+            ulDiv.appendChild(ul)
+            ul.append(id, name, username, email, address, phone, website, company)
+            document.body.append(ulDiv, btn)
+
+        })
+</script>
+</body>
+</html>

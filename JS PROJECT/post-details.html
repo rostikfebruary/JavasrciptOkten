@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+
+  <style>
+
+    .ul-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border: 2px solid black;
+      font-size: 25px;
+      width: 720px;
+      margin-left: 27%;
+
+    }
+
+    body {
+
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXYZ5jgPICvdS2vlXtXED-AUqr6reQxPgoA&usqp=CAU');
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .posts-style {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      border: 3px solid #f3d736;
+      width: 430px;
+      margin-left: 37%;
+      margin-top: 4%;
+    }
+  </style>
+</head>
+<body>
+<script>
+  let url = new URL(location.href)
+  let postId = url.searchParams.get('id')
+
+
+  fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+          .then(resp => resp.json())
+          .then(postsDetails => {
+
+            let ulDiv = document.createElement('div')
+            ulDiv.classList.add('ul-container')
+            let ul = document.createElement('ul')
+            let userId = document.createElement('li')
+            let id = document.createElement('li')
+            let title = document.createElement('li')
+            let body = document.createElement('li')
+
+            userId.innerText = `userId: ${postsDetails.userId}`
+            id.innerText = `ID: ${postsDetails.id}`
+            title.innerText = `Title: ${postsDetails.title}`
+            body.innerText = `Body: ${postsDetails.body}`
+
+            ul.append(userId, id, title, body)
+            ulDiv.append(ul)
+            document.body.append(ulDiv)
+
+          })
+
+  fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+          .then(resp => resp.json())
+          .then(commentsPosts => {
+            for (const bodyComment of commentsPosts) {
+              let postsDiv = document.createElement('div')
+              postsDiv.classList.add('posts-style')
+              let ulPosts = document.createElement('ul')
+              let bodyComments = document.createElement('li')
+
+              bodyComments.innerText = `Comment: ${bodyComment.body}`
+              ulPosts.appendChild(bodyComments)
+              postsDiv.appendChild(ulPosts)
+              document.body.appendChild(postsDiv)
+            }
+
+          })
+
+
+</script>
+</body>
+</html>
